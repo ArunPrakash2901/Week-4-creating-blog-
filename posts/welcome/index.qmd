@@ -22,12 +22,14 @@ library(gt)
 library(readr)
 library(broom)
 library(kableExtra)
+library(readxl)
+library(janitor)
 ```
 
 ```{r}
-
-df <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-23/english_education.csv')
-
+df <- read_excel("data/data.xlsx", sheet = 2)
+df <- df |> 
+  clean_names()
 ```
 
 ```{r}
@@ -89,7 +91,7 @@ tukey_hsd <- ggplot(posthoc_result, aes(x = estimate, y = reorder(contrast, esti
 ```
 
 ```{r}
-data_dict <- read_csv("data/key variables.csv")
+data_dict <- read_csv("data/key_variables.csv")
 
 dictionary <- data_dict %>%
   gt() %>%
@@ -136,3 +138,5 @@ dictionary <- data_dict %>%
   opt_table_font(font = "Arial")
 
 ```
+
+
