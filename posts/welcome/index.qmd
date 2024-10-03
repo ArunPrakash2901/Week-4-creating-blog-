@@ -143,3 +143,14 @@ dictionary <- data_dict %>%
 
 The transition from school to the workforce is a critical stage in the life of young adults. But what role does geography, specifically town size, play in shaping employment opportunities for 19-year-olds? This blog post investigates whether the size of a town significantly affects employment rates, drawing insights from a dataset provided by [https://raw.githubusercontent.com/rfordatascience](RforDataScience(2024)). By analyzing towns of varying sizes—small, medium, large, and cities—this analysis aims to uncover patterns that can inform future employment support policies.
 
+# Snapshot of the Data Behind the Analysis
+
+To investigate the relationship between town size and employment, the dataset includes key variables such as town size classification (small, medium, large, or city) and employment rates for young adults. The population size serves as a proxy for the available opportunities in each town.
+
+The table @tbl-keyvariables below contains summary of the key variables:
+
+```{r}
+#| label: tbl-keyvariables
+#| tbl-cap: "Overview of key variables used in the analysis."
+dictionary
+```
