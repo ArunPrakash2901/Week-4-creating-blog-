@@ -1,12 +1,138 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "The Hidden Impact of Town Size on Youth Employment"
+author: "Arun Krishnasamy"
 date: "2024-08-13"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      eval = TRUE, 
+                      cache = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+options(width=80, digits=3)
+```
 
-![](thumbnail.jpg)
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(gt)
+library(readr)
+library(broom)
+library(kableExtra)
+```
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+```{r}
+
+df <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-23/english_education.csv')
+
+```
+
+```{r}
+
+df_clean <- df |>
+  filter(activity_at_age_19_employment_with_earnings_above_0 != "*") |>
+  mutate(Employment_Rate = as.numeric(activity_at_age_19_employment_with_earnings_above_0), 
+    Size_Classification = as.factor(size_flag) 
+  ) |> 
+  filter(!Size_Classification %in% c("Inner London BUA", "Outer london BUA", "Not BUA", "Other Small BUAs"))
+
+```
+
+```{r}
+employ_distri <- ggplot(df_clean, aes(x = Size_Classification, y = Employment_Rate)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(title = "Employment Rate Distribution at Age 19 by Town Size",
+       x = "Town Size Classification",
+       y = "Employment Rate (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+
+employment_summary <- df_clean |> 
+  group_by(Size_Classification) |> 
+  summarise(Average_Employment_Rate = mean(Employment_Rate, na.rm = TRUE))
+
+```
+
+```{r}
+# Perform ANOVA if there are more than two levels
+anova_result <- aov(Employment_Rate ~ Size_Classification, data = df_clean)
+
+anova_tbl <- tidy(anova_result)
+
+```
+
+```{r, Post-hoc test}
+
+# Perform Tukey's HSD post-hoc test
+posthoc_result <- TukeyHSD(anova_result) |> 
+  tidy() |> 
+  select(-term, -null.value)
+
+
+```
+
+```{r}
+tukey_hsd <- ggplot(posthoc_result, aes(x = estimate, y = reorder(contrast, estimate))) +
+  geom_point(aes(color = adj.p.value < 0.05), size = 3) + 
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.2) + 
+  geom_vline(xintercept = 0, linetype = "dashed", color = "red") +
+  labs(x = "Mean Difference (Estimate)", y = "Contrast", title = "Tukey HSD Post-hoc Test Results") +
+  theme_minimal() +
+  scale_color_manual(values = c("TRUE" = "blue", "FALSE" = "black")) +
+  theme(legend.position = "none")
+```
+
+```{r}
+data_dict <- read_csv("data/key variables.csv")
+
+dictionary <- data_dict %>%
+  gt() %>%
+  tab_header(
+    title = md("**Data Dictionary**"),
+    subtitle = md("Description of Variables")
+  ) %>%
+  cols_label(
+    variable = md("**Variable Name**"),
+    class = md("**Data Type**"),
+    description = md("**Description**")
+  ) %>%
+  fmt_markdown(columns = vars(description)) %>%
+  cols_width(
+    vars(variable) ~ px(120),  # Adjust width for variable column
+    vars(class) ~ px(100),     # Adjust width for class column
+    vars(description) ~ px(300) # Adjust width for description column
+  ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "#f0f0f0"),
+      cell_borders(sides = "all", color = "gray", weight = px(1)),
+      cell_text(weight = "bold", color = "#333333", font = "Arial")
+    ),
+    locations = cells_column_labels(columns = everything())
+  ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "#fafafa"),
+      cell_borders(sides = "all", color = "lightgray", weight = px(0.5)),
+      cell_text(align = "left", font = "Arial")
+    ),
+    locations = cells_body(columns = everything())
+  ) %>%
+  tab_options(
+    table.border.top.color = "transparent",
+    table.border.bottom.color = "transparent",
+    heading.align = "center",
+    column_labels.border.top.color = "gray",
+    column_labels.border.bottom.color = "gray",
+    table.font.size = px(10)  # Reduce font size
+  ) %>%
+  opt_table_outline() %>%
+  opt_table_font(font = "Arial")
+
+```
