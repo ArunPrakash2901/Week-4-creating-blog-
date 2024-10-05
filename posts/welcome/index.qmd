@@ -195,4 +195,8 @@ Interestingly, this pattern holds even across medium and large towns, which also
 
 This study challenges the long-held belief that moving to the city is the best path to career success. For many young adults, the reverse might be true. Cities may offer more options on paper, but small towns provide better chances of landing that first job. For policymakers, this suggests a need to focus on supporting young adults in cities, where high competition and saturation are real barriers.
 
+This analysis was conducted using data from the [TidyTuesdayR](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-23/readme.md) project, sourced from R for Data Science (2024). Employment rates for 19-year-olds were compared across different town sizes using statistical methods, confirming that smaller towns offer better employment prospects for young adults than big cities.
 
+*Data sources: R for Data Science (TidyTuesday dataset: Employment Rates), UK Government (Town size and demographic data), Census 2011 (Population and employment data).*
+
+ONS. (2023).Why Do Children and Young People in Smaller Towns Do Better Academically Than Those in Larger Towns? [Office for National Statistics](https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25)
