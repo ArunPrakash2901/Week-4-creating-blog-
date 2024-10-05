@@ -1,5 +1,5 @@
 ---
-title: "The Hidden Impact of Town Size on Youth Employment"
+title: "Where Should You Start Your Career?"
 author: "Arun Krishnasamy"
 date: "2024-08-13"
 categories: [news]
@@ -139,25 +139,9 @@ dictionary <- data_dict %>%
 
 ```
 
-# Do Smaller Towns Hold the Key to Better Job Prospects?
+You might think that moving to a big city is the sure way to find a job, especially when you're just starting out at 19. But what if I told you that small towns actually offer better job prospects for young adults? It’s true! Data shows that 19-year-olds living in smaller towns have higher employment rates than those in big cities. And the more we look into it, the more the data reveals that size does matter when it comes to landing that first job.
 
-The transition from school to the workforce is a critical stage in the life of young adults. But what role does geography, specifically town size, play in shaping employment opportunities for 19-year-olds? This blog post investigates whether the size of a town significantly affects employment rates, drawing insights from a dataset provided by [https://raw.githubusercontent.com/rfordatascience](RforDataScience(2024)). By analyzing towns of varying sizes—small, medium, large, and cities—this analysis aims to uncover patterns that can inform future employment support policies.
-
-# Snapshot of the Data Behind the Analysis
-
-To investigate the relationship between town size and employment, the dataset includes key variables such as town size classification (small, medium, large, or city) and employment rates for young adults. The population size serves as a proxy for the available opportunities in each town.
-
-The table @tbl-keyvariables below contains summary of the key variables:
-
-```{r}
-#| label: tbl-keyvariables
-#| tbl-cap: "Overview of key variables used in the analysis."
-dictionary
-```
-
-# Employment Trends Across Town Sizes
-
-A boxplot was used to visually compare employment rates across various town sizes. Figure 1 @fig-boxplot provides a clear overview of how employment outcomes vary by the size of the town. Small towns show a wider spread but the highest median employment rates, while cities exhibit the lowest employment rates with less variation.
+The study looked at employment rates across four types of towns—small, medium, large, and cities in UK. While cities are often seen as places full of opportunity, the numbers tell a different story. Small towns had the highest median employment rates, while cities, with all their hustle and bustle, had the lowest.
 
 ```{r}
 #| label: fig-boxplot
@@ -165,4 +149,50 @@ A boxplot was used to visually compare employment rates across various town size
 #| fig-height: 4
 employ_distri
 ```
+
+To make sure these differences weren’t just random flukes, we compared the employment data across the different town sizes. Imagine it like a reality show where each town size competes to prove it offers better job prospects, and this in statistics is known as **ANOVA**. And as we reviewed each contestant’s performance, the results @tbl-anova became crystal clear: small and medium towns consistently came out on top when it came to employment rates, leaving cities trailing behind.
+
+```{r}
+#| label: tbl-anova
+#| tbl-cap: "ANOVA Results for the Effect of Town Size Classification on Employment Rates at Age 19"
+kableExtra::kable(anova_tbl)
+```
+
+Now, you might wonder: how did we figure this out without just taking the numbers at face value? Think of it this way—when you’re comparing the job market in different places, there are a lot of factors that could skew the results. So, to be extra sure, we had to put the data through a "fairness filter", and the filter I am referring to is the **post-hoc Tukey HSD test**. This filter looks at all the town sizes and checks whether the differences in job rates are big enough to be meaningful, or if they might just be due to random chance.
+
+And what did the filter show?@tbl-posthoc
+
+```{r}
+#| label: tbl-posthoc
+#| tbl-cap: "Tukey HSD test results showing significant differences in employment rates between town sizes."
+kable(posthoc_result) |> 
+  kable_styling(font_size = 10) 
+```
+
+Small towns really do provide better chances for young adults to get a job. To get even more specific, we looked at each pair of town sizes to figure out which ones truly stand apart.
+
+```{r}
+#| label: fig-HSD
+#| fig.cap: "The figure provides a quick visual overview of which pairwise comparisons are significant."
+#| fig-height: 3.5
+  
+tukey_hsd
+```
+
+The conclusion was loud and clear: young people in small and medium towns had a significantly better shot at finding jobs than those in the big cities.
+
+# Why would this be the case?
+
+The reasons seem to distill down to a few key factors.
+
+First, in smaller towns, there’s less competition for available jobs. While cities may have thousands of openings, they also have thousands of applicants. In smaller towns, job seekers are often competing with a much smaller pool of candidates, making it easier to land a job.
+
+Another factor is networking. In small towns, personal connections can play a big role in getting your foot in the door. Knowing the local shop owner or a family friend who works at the factory might be just the edge you need. In big cities, where many people are outsiders, these networks don’t function as effectively.
+
+One more factor could be the perception of the available jobs. Young adults in cities might feel overwhelmed or discouraged by the high competition, or they might not even be aware of entry-level positions that aren’t as visible among the numerous listings for more experienced candidates. In smaller towns, job openings might be fewer, but they’re often better suited for young people just starting out in their careers.
+
+Interestingly, this pattern holds even across medium and large towns, which also outperformed cities, though to a lesser extent than small towns.
+
+This study challenges the long-held belief that moving to the city is the best path to career success. For many young adults, the reverse might be true. Cities may offer more options on paper, but small towns provide better chances of landing that first job. For policymakers, this suggests a need to focus on supporting young adults in cities, where high competition and saturation are real barriers.
+
 

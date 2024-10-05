@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Tristan O’Malley">
+<meta name="author" content="Arun Krishnasamy">
 <meta name="dcterms.date" content="2024-08-13">
 
-<title>Welcome To My Blog – Week 4(creating blog)</title>
+<title>The Hidden Impact of Town Size on Youth Employment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Week 4(creating blog)</span>
+    <span class="navbar-title">The Hidden Impact of Town Size on Youth Employment</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome To My Blog</h1>
+      <h1 class="title">The Hidden Impact of Town Size on Youth Employment</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
               </div>
@@ -123,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Tristan O’Malley </p>
+               <p>Arun Krishnasamy </p>
             </div>
     </div>
       
@@ -149,11 +149,533 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<section id="do-smaller-towns-hold-the-key-to-better-job-prospects" class="level1">
+<h1>Do Smaller Towns Hold the Key to Better Job Prospects?</h1>
+<p>The transition from school to the workforce is a critical stage in the life of young adults. But what role does geography, specifically town size, play in shaping employment opportunities for 19-year-olds? This blog post investigates whether the size of a town significantly affects employment rates, drawing insights from a dataset provided by <a href="RforDataScience(2024)">https://raw.githubusercontent.com/rfordatascience</a>. By analyzing towns of varying sizes—small, medium, large, and cities—this analysis aims to uncover patterns that can inform future employment support policies.</p>
+</section>
+<section id="snapshot-of-the-data-behind-the-analysis" class="level1">
+<h1>Snapshot of the Data Behind the Analysis</h1>
+<p>To investigate the relationship between town size and employment, the dataset includes key variables such as town size classification (small, medium, large, or city) and employment rates for young adults. The population size serves as a proxy for the available opportunities in each town.</p>
+<p>The table <a href="#tbl-keyvariables" class="quarto-xref">Table&nbsp;1</a> below contains summary of the key variables:</p>
+<div class="cell">
+<div id="tbl-keyvariables" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-keyvariables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Overview of key variables used in the analysis.
+</figcaption>
+<div aria-describedby="tbl-keyvariables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="inlgsxxhsi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#inlgsxxhsi table {
+  font-family: Arial, system-ui, 'Segoe UI', Roboto, Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#inlgsxxhsi thead, #inlgsxxhsi tbody, #inlgsxxhsi tfoot, #inlgsxxhsi tr, #inlgsxxhsi td, #inlgsxxhsi th {
+  border-style: none;
+}
+
+#inlgsxxhsi p {
+  margin: 0;
+  padding: 0;
+}
+
+#inlgsxxhsi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #D3D3D3;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-left-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#inlgsxxhsi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#inlgsxxhsi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#inlgsxxhsi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #BEBEBE;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #BEBEBE;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#inlgsxxhsi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#inlgsxxhsi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#inlgsxxhsi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#inlgsxxhsi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #BEBEBE;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#inlgsxxhsi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#inlgsxxhsi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#inlgsxxhsi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#inlgsxxhsi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#inlgsxxhsi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#inlgsxxhsi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#inlgsxxhsi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inlgsxxhsi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#inlgsxxhsi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#inlgsxxhsi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#inlgsxxhsi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inlgsxxhsi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#inlgsxxhsi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inlgsxxhsi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#inlgsxxhsi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inlgsxxhsi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#inlgsxxhsi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inlgsxxhsi .gt_left {
+  text-align: left;
+}
+
+#inlgsxxhsi .gt_center {
+  text-align: center;
+}
+
+#inlgsxxhsi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#inlgsxxhsi .gt_font_normal {
+  font-weight: normal;
+}
+
+#inlgsxxhsi .gt_font_bold {
+  font-weight: bold;
+}
+
+#inlgsxxhsi .gt_font_italic {
+  font-style: italic;
+}
+
+#inlgsxxhsi .gt_super {
+  font-size: 65%;
+}
+
+#inlgsxxhsi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#inlgsxxhsi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#inlgsxxhsi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#inlgsxxhsi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#inlgsxxhsi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#inlgsxxhsi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#inlgsxxhsi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#inlgsxxhsi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#inlgsxxhsi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="4" class="gt_heading gt_title gt_font_normal" style="text-align: left;"><p><strong>Data Dictionary</strong></p></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left;"><p>Description of Variables</p></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="...1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: left; background-color: #F0F0F0; border-left-width: 1px; border-left-style: solid; border-left-color: gray; border-right-width: 1px; border-right-style: solid; border-right-color: gray; border-top-width: 1px; border-top-style: solid; border-top-color: gray; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: gray; color: #333333; font-family: Arial; font-weight: bold;" scope="col">...1</th>
+<th id="<div data-qmd-base64=&quot;KipWYXJpYWJsZSBOYW1lKio=&quot;><div class='gt_from_md'><p><strong>Variable Name</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; background-color: #F0F0F0; border-left-width: 1px; border-left-style: solid; border-left-color: gray; border-right-width: 1px; border-right-style: solid; border-right-color: gray; border-top-width: 1px; border-top-style: solid; border-top-color: gray; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: gray; color: #333333; font-family: Arial; font-weight: bold;" scope="col"><p><strong>Variable Name</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipEYXRhIFR5cGUqKg==&quot;><div class='gt_from_md'><p><strong>Data Type</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; background-color: #F0F0F0; border-left-width: 1px; border-left-style: solid; border-left-color: gray; border-right-width: 1px; border-right-style: solid; border-right-color: gray; border-top-width: 1px; border-top-style: solid; border-top-color: gray; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: gray; color: #333333; font-family: Arial; font-weight: bold;" scope="col"><p><strong>Data Type</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipEZXNjcmlwdGlvbioq&quot;><div class='gt_from_md'><p><strong>Description</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; background-color: #F0F0F0; border-left-width: 1px; border-left-style: solid; border-left-color: gray; border-right-width: 1px; border-right-style: solid; border-right-color: gray; border-top-width: 1px; border-top-style: solid; border-top-color: gray; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: gray; color: #333333; font-family: Arial; font-weight: bold;" scope="col"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="...1" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">3</td>
+<td class="gt_row gt_left" headers="variable" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">size_flag</td>
+<td class="gt_row gt_left" headers="class" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">character</td>
+<td class="gt_row gt_left" headers="description" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;"><p>Size category of the built-up area or built-up area subdivision based on resident population (from Census 2011)</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="...1" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">22</td>
+<td class="gt_row gt_left" headers="variable" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">activity_at_age_19_employment_with_earnings_above_0</td>
+<td class="gt_row gt_left" headers="class" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;">numeric</td>
+<td class="gt_row gt_left" headers="description" style="text-align: left; background-color: #FAFAFA; border-left-width: 0.5px; border-left-style: solid; border-left-color: lightgray; border-right-width: 0.5px; border-right-style: solid; border-right-color: lightgray; border-top-width: 0.5px; border-top-style: solid; border-top-color: lightgray; border-bottom-width: 0.5px; border-bottom-style: solid; border-bottom-color: lightgray; font-family: Arial;"><p>Proportion of the town/city’s 2012/13 key stage 4 cohort in sustained employment at the age 19.</p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="employment-trends-across-town-sizes" class="level1">
+<h1>Employment Trends Across Town Sizes</h1>
+<p>A boxplot was used to visually compare employment rates across various town sizes. Figure 1 <a href="#fig-boxplot" class="quarto-xref">Figure&nbsp;1</a> provides a clear overview of how employment outcomes vary by the size of the town. Small towns show a wider spread but the highest median employment rates, while cities exhibit the lowest employment rates with less variation.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-boxplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The distribution of employment rates at age 19 across different town sizes. Cities have the lowest median and largest variation, while Small Towns have the highest variation but a median similar to Medium and Large Towns.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
