@@ -154,3 +154,15 @@ The table @tbl-keyvariables below contains summary of the key variables:
 #| tbl-cap: "Overview of key variables used in the analysis."
 dictionary
 ```
+
+# Employment Trends Across Town Sizes
+
+A boxplot was used to visually compare employment rates across various town sizes. Figure 1 @fig-boxplot provides a clear overview of how employment outcomes vary by the size of the town. Small towns show a wider spread but the highest median employment rates, while cities exhibit the lowest employment rates with less variation.
+
+```{r}
+#| label: fig-boxplot
+#| fig-cap: "The distribution of employment rates at age 19 across different town sizes. Cities have the lowest median and largest variation, while Small Towns have the highest variation but a median similar to Medium and Large Towns."
+#| fig-height: 4
+employ_distri
+```
+
