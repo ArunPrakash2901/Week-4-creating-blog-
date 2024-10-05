@@ -1,5 +1,5 @@
 ---
-title: "The Hidden Impact of Town Size on Youth Employment"
+title: "Data Stories"
 listing:
   contents: posts
   sort: "date desc"
