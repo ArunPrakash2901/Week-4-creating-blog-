@@ -15,10 +15,18 @@ about:
       text: Email
       href: akri0026@student.monash.edu
 ---
+
 I am currently pursuing a Master of Business Analytics at Monash University, where I am exploring the exciting intersection of data, technology, and business. While I am still discovering my specific interests within the field, I am passionate about learning and developing my skills in data analysis, machine learning, and business problem-solving.
 
 As I continue to grow in my studies, I am eager to take on new challenges and collaborate on projects that leverage data to drive insights and impact. I believe in the power of data to shape better decisions and improve outcomes across industries.
 
 This website is a space where I will share some of my projects and learning experiences as I progress in my journey towards becoming a skilled business analyst. If you would like to connect or discuss a project, feel free to reach out to me through the contact information below.
 
+<footer style="text-align: center; padding: 1rem; background-color: #333; color: white;">
+  <p>© 2024 Arun Krishnasamy. All rights reserved.</p>
+  <ul style="list-style: none; padding: 0;">
+    <li><a href="https://github.com/ArunPrakash2901" style="color: white;">GitHub</a></li>
+    <li><a href="https://linkedin.com/in/apkrishnasamy" style="color: white;">LinkedIn</a></li>
+  </ul>
+</footer>
 

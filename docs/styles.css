@@ -1,0 +1,116 @@
+/* General Page Styles */
+body {
+  font-family: 'Roboto', sans-serif;  /* Clean, modern font */
+  background-color: #f5f5f5;         /* Light background for readability */
+  color: #333333;                    /* Dark text for contrast */
+  font-size: 1.1rem;                 /* Slightly larger font size */
+  line-height: 1.8;                  /* Increased line spacing for readability */
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #333333;         /* Dark background for the navbar */
+  padding: 1rem;
+}
+
+.navbar a {
+  color: #ffffff;                    /* White text for navbar links */
+  padding: 0.75rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;                 /* Slightly larger font size for navbar links */
+}
+
+.navbar a:hover {
+  color: #f39c12;                    /* Orange color on hover for links */
+}
+
+/* Profile Image */
+img.round {
+  border-radius: 50%;                /* Keep the image circular */
+  height: 12em;
+  width: 12em;
+  object-fit: cover;                 /* Ensure the image is properly cropped */
+  display: block;
+  margin: 1.5rem auto;               /* Center the image */
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #333333;                    /* Dark headings for contrast */
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.7rem;                 /* Larger main heading */
+}
+
+h2, h3 {
+  font-size: 2rem;                   /* Slightly larger sub-headings */
+}
+
+/* Links */
+a {
+  color: #2980b9;                    /* Blue for regular links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f39c12;                    /* Orange on hover */
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #333333;         /* Dark footer */
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  font-size: 1rem;                   /* Increased footer font size */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  img.round {
+    height: 10em;
+    width: 10em;                     /* Adjust image size for smaller screens */
+  }
+
+  .navbar a {
+    font-size: 1rem;                 /* Adjust font size in navbar for mobile */
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 0.5rem;             /* Reduced padding for a more compact look */
+  background-color: #333;      /* Dark background color */
+  color: white;                /* White text color */
+  font-size: 0.9rem;           /* Smaller font size */
+  position: relative;          /* Relative positioning for flexible placement */
+  width: 100%;
+}
+
+footer ul {
+  list-style-type: none;       /* Remove bullet points */
+  padding: 0;                  /* Remove padding */
+}
+
+footer ul li {
+  display: inline;             /* Display links in a row */
+  margin: 0 10px;              /* Spacing between the links */
+}
+
+footer a {
+  color: white;                /* White links */
+  text-decoration: none;       /* No underline */
+}
+
+footer a:hover {
+  color: #f39c12;              /* Hover color for links */
+}
